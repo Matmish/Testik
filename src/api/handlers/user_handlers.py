@@ -13,14 +13,14 @@ users_router = APIRouter(
 @users_router.post('', )
 async def create_user(
         body: UserRequestSchema,
-        session: AsyncSession() = Depends(get_db)
+        session: AsyncSession = Depends(get_db)
 ):
     await _create_user(body, session)
 
 
 @users_router.get('', response_model= UsersResponseSchema)
 async def get_all_users(
-        session: AsyncSession() = Depends(get_db)
+        session: AsyncSession = Depends(get_db)
 ):
     return await _get_all_users(session)
 
@@ -28,6 +28,6 @@ async def get_all_users(
 @users_router.get('/{user_id}', response_model= UserResponseSchema)
 async def get_user_by_id(
         user_id: int,
-        session: AsyncSession() = Depends(get_db)
+        session: AsyncSession = Depends(get_db)
 ):
     return await _get_user_by_id(user_id, session)

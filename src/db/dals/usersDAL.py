@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.models.users import Users
 
 
-class UsersDAL():
+class UsersDAL:
     def __init__(self, db_session: AsyncSession):
         self.db_session = db_session
 

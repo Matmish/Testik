@@ -13,14 +13,14 @@ products_router = APIRouter(
 @products_router.post('', )
 async def create_product(
         body: ProductRequestSchema,
-        session: AsyncSession() = Depends(get_db)
+        session: AsyncSession = Depends(get_db)
 ):
     await _create_product(body, session)
 
 
 @products_router.get('', response_model= ProductsResponseSchema)
 async def get_all_products(
-        session: AsyncSession() = Depends(get_db)
+        session: AsyncSession = Depends(get_db)
 ):
     return await _get_all_products(session)
 
@@ -28,6 +28,6 @@ async def get_all_products(
 @products_router.get('/{product_id}', response_model= ProductResponseSchema)
 async def get_product_by_id(
         product_id: int,
-        session: AsyncSession() = Depends(get_db)
+        session: AsyncSession = Depends(get_db)
 ):
     return await _get_product_by_id(product_id, session)
