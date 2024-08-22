@@ -12,7 +12,7 @@ class UsersDAL():
         new_user = Users(
             name=data.name,
             surname=data.surname,
-            date_of_birth=data.date_of_birth
+            birth_date=data.date_of_birth
         )
         self.db_session.add(new_user)
         await self.db_session.commit()

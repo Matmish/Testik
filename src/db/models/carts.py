@@ -21,6 +21,6 @@ class Carts(Base):
     )
     cart_product = relationship(
         "Products",
-        secondary="cart_product",
+        secondary="carts_products",
         back_populates="product_cart"
     )

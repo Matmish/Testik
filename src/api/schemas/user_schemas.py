@@ -1,3 +1,4 @@
+import datetime
 from typing import Optional, List
 
 from pydantic import BaseModel
@@ -6,7 +7,7 @@ from pydantic import BaseModel
 class UserRequestSchema(BaseModel):
     name: Optional[str] = None
     surname: Optional[str] = None
-    date_of_birth: Optional[str] = None
+    date_of_birth: Optional[datetime.date]= None
 
 
 class UserResponseSchema(UserRequestSchema):
@@ -14,4 +15,4 @@ class UserResponseSchema(UserRequestSchema):
 
 
 class UsersResponseSchema(BaseModel):
-    products: Optional[List[UserResponseSchema]] = None
+    users: Optional[List[UserResponseSchema]] = None
