@@ -7,7 +7,8 @@ from alembic import context
 from src.db.sessions import Base
 from src.config import DB_URL
 from src.db.models import (
-    products
+    products,
+    carts
 )
 
 # this is the Alembic Config object, which provides
