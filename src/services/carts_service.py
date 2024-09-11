@@ -9,6 +9,13 @@ async def _create_cart(data, session):
     await carts_dal.create_cart(data)
 
 
+async def _add_product_to_cart(data, session):
+    carts_dal = CartsDAL(session)
+    if data.products_ids:
+        for product_id in data.products_ids:
+           await carts_dal.add_product(data.cart_id, product_id)
+
+
 async def _get_all_carts(session):
     carts_dal = CartsDAL(session)
     carts_data = await carts_dal.get_all_carts()

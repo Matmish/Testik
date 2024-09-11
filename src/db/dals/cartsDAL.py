@@ -3,8 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload, selectinload
 
 from src.db.models.carts import Carts
-from src.db.models.products import Products
-from src.db.models.users import Users
+from src.db.models.carts_products import CartsProducts
 
 
 class CartsDAL:
@@ -32,3 +31,12 @@ class CartsDAL:
         results = await self.db_session.execute(query)
         carts = results.scalars().all()
         return carts
+
+    async def add_product(self, cart_id, product_id):
+        new_cart_product = CartsProducts(
+            cart_id=cart_id,
+            product_id=product_id
+        )
+        self.db_session.add(new_cart_product)
+        await self.db_session.commit()
+        await self.db_session.flush()

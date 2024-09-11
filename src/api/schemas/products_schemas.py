@@ -15,3 +15,7 @@ class ProductResponseSchema(ProductRequestSchema):
 
 class ProductsResponseSchema(BaseModel):
     products: Optional[List[ProductResponseSchema]] = None
+
+class ProductUpdateSchema(BaseModel):
+    name: Optional[str]
+    price: Optional[float]

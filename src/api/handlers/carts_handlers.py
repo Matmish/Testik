@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.api.schemas.carts_schemas import CartRequestSchema, CartsResponseSchema
+from src.api.schemas.carts_schemas import CartRequestSchema, CartsResponseSchema, CartResponseSchema, \
+    AddToCartRequestSchema
 from src.api.schemas.user_schemas import UserRequestSchema, UserResponseSchema, UsersResponseSchema
 from src.db.sessions import get_db
-from src.services.carts_service import _create_cart, _get_all_carts
+from src.services.carts_service import _create_cart, _get_all_carts, _add_product_to_cart
 from src.services.user_services import _create_user, _get_all_users, _get_user_by_id
 
 carts_router = APIRouter(
@@ -25,3 +26,16 @@ async def get_all_carts(
         session: AsyncSession = Depends(get_db)
 ):
     return await _get_all_carts(session)
+
+@carts_router.post('/addProduct')
+async def add_product_to_card(
+        body: AddToCartRequestSchema,
+        session: AsyncSession = Depends(get_db)
+
+):
+    await _add_product_to_cart(body, session)
+
+
+
+
+

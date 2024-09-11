@@ -18,3 +18,13 @@ class CartResponseSchema(CartRequestSchema):
 
 class CartsResponseSchema(BaseModel):
     carts: Optional[List[CartResponseSchema]] = None
+
+
+class AddToCartRequestSchema(BaseModel):
+    products_ids: Optional[List[int]] = None
+    cart_id: Optional[int] = None
+
+
+
+
+
